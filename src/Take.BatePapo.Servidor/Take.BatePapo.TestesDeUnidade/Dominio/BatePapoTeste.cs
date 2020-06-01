@@ -7,14 +7,14 @@ using Xunit;
 
 namespace Take.BatePapo.TestesDeUnidade.Dominio
 {
-    public class SalaDeBatePapoTeste
+    public class BatePapoTeste
     {
         [Fact]
         public void DeveAdicionarUsuarioAoBatePapo()
         {
             var participanteApelido = "José";
             var particitpantesDoBatePapoEsperados = new List<string>{participanteApelido};
-            var batePapo = new SalaDeBatePapo();
+            var batePapo = new BatePapo.Dominio.Entidades.BatePapo();
             batePapo.AdicionarParticipante(participanteApelido, new ClientWebSocket());
 
             var particitpantesDoBatePapo = batePapo.Participantes;
@@ -27,7 +27,7 @@ namespace Take.BatePapo.TestesDeUnidade.Dominio
         {
             var participanteApelido = "José";
             var particitpantesDoBatePapoEsperados = new List<string> { participanteApelido };
-            var batePapo = new SalaDeBatePapo();
+            var batePapo = new BatePapo.Dominio.Entidades.BatePapo();
             batePapo.AdicionarParticipante(participanteApelido, new ClientWebSocket());
             //Adicionando usuário repetido
             var usuarioFoiAdiconado = batePapo.AdicionarParticipante(participanteApelido, new ClientWebSocket());
@@ -44,7 +44,7 @@ namespace Take.BatePapo.TestesDeUnidade.Dominio
             //criar bate papo e adicionar participante à sala.
             var apelidoDoParticipante = "José";
             var particitpantesDoBatePapoEsperados = new List<string> { apelidoDoParticipante };
-            var batePapo = new SalaDeBatePapo();
+            var batePapo = new BatePapo.Dominio.Entidades.BatePapo();
             batePapo.AdicionarParticipante(apelidoDoParticipante, new ClientWebSocket());
             var particitpantesDoBatePapo1Participante = batePapo.Participantes;
             var totalInicialDeParticipantes = particitpantesDoBatePapo1Participante.Count();
