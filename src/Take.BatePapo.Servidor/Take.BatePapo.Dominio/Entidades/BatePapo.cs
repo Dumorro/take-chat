@@ -4,7 +4,6 @@ using System.Linq;
 using System.Net.WebSockets;
 using System.Threading.Tasks;
 using Take.BatePapo.Dominio.Dtos;
-using Take.BatePapo.Dominio.Enumeracoes;
 
 namespace Take.BatePapo.Dominio.Entidades
 {

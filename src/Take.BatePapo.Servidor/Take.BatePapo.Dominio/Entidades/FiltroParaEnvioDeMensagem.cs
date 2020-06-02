@@ -11,11 +11,13 @@ namespace Take.BatePapo.Dominio.Entidades
     {
         public static List<string> Filtrar(Mensagem mensagem, ConcurrentDictionary<string, WebSocket> participantes)
         {
-            return participantes.Where(d => !d.Key.Equals(mensagem.ApelidoDoParticipante) && mensagem.Tipo != ETipoDaMensagem.Comando 
-            && ((mensagem.Tipo == ETipoDaMensagem.Aberta || mensagem.Tipo== ETipoDaMensagem.Privada) && d.Key.Equals(mensagem.Destinatario))
-            ).
-                                                  Select(d => d.Key).ToList();
-
+            var tiposMensagemDireta = new List<ETipoDaMensagem>(){ ETipoDaMensagem.Aberta, ETipoDaMensagem.Privada };
+            return participantes.Where(d => !d.Key.Equals(mensagem.ApelidoDoParticipante) && mensagem.Tipo != ETipoDaMensagem.Comando
+                                       && (
+                                       (string.IsNullOrWhiteSpace(mensagem.Destinatario) && mensagem.Tipo == ETipoDaMensagem.Todos)
+                                       ||
+                                       (d.Key.Equals(mensagem.Destinatario) && tiposMensagemDireta.Contains(mensagem.Tipo))
+                                       )).Select(d => d.Key).ToList();
         }
     }
 }
