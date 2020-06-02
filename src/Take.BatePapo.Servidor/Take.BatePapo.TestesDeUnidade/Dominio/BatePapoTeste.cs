@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Net.WebSockets;
 using ExpectedObjects;
-using Take.BatePapo.Dominio.Entidades;
 using Xunit;
 
 namespace Take.BatePapo.TestesDeUnidade.Dominio

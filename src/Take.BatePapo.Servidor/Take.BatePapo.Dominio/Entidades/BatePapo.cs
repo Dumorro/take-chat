@@ -26,12 +26,7 @@ namespace Take.BatePapo.Dominio.Entidades
         public async Task Enviar(Mensagem mensagem)
         {
             new ValidadorDeMensagem().Validate(mensagem);
-            var destinatarios = Participantes.Where(d => !d.Equals(mensagem.ApelidoDoParticipante)
-                                                         &&
-                                                         (mensagem.Tipo == ETipoDaMensagem.Aberta ||
-                                                          mensagem.Tipo == ETipoDaMensagem.Privada &&
-                                                          d.Equals(mensagem.Destinatario))
-            ).ToList();
+            var destinatarios = FiltroParaEnvioDeMensagem.Filtrar(mensagem, _participantes);
             await DispararMensagem(mensagem, destinatarios);
         }
 

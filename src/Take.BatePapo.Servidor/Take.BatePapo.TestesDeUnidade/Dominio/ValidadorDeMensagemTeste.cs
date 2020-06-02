@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Net.WebSockets;
-using System.Security.Cryptography;
-using ExpectedObjects;
-using Take.BatePapo.Dominio.Dtos;
+﻿using Take.BatePapo.Dominio.Dtos;
 using Take.BatePapo.Dominio.Entidades;
 using Take.BatePapo.Dominio.Enumeracoes;
 using Xunit;
