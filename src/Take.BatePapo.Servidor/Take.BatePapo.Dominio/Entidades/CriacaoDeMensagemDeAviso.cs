@@ -23,7 +23,7 @@ namespace Take.BatePapo.Dominio.Entidades
 
         private static ETipoDaMensagem ObterTipoMensagem(string[] parametros)
         {
-            if (parametros.FirstOrDefault(p => p.StartsWith("c")) != null)
+            if (parametros.FirstOrDefault(p => p.StartsWith("e")) != null)
                 return ETipoDaMensagem.Comando;
             return parametros.FirstOrDefault(p => p.StartsWith("r")) != null ? ETipoDaMensagem.Privada : ETipoDaMensagem.Aberta;
         }

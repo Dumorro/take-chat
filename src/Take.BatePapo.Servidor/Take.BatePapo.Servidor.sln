@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Take.BatePapo.WebApp", "Take.BatePapo.WebApp\Take.BatePapo.WebApp.csproj", "{954FF664-1755-4970-B592-6048314F8DA3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B59E3E95-8507-4F7D-811A-1E5FC420B1A2}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2E583CA5-0B0B-404E-9D7D-33B47CC59BC5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testes", "Testes", "{3F458045-0EA8-4AC1-9A33-0CB5F7174EF1}"

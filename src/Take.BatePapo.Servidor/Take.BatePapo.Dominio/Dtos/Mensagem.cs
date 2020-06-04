@@ -16,7 +16,7 @@ namespace Take.BatePapo.Dominio.Dtos
         {
             _salaDoBatePapo = salaDoBatePapo;
             ApelidoDoParticipante = apelidoDoParticipante;
-            Destinatario = string.IsNullOrWhiteSpace(destinatario) ? "todos" : destinatario;
+            Destinatario = destinatario;
             _textoDaMensagem = textoDaMensagem;
             TipoDaMensagem = tipoDaMensagem;
         }

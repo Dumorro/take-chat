@@ -10,6 +10,9 @@ using Take.BatePapo.Dominio.Interfaces;
 
 namespace Take.BatePapo.Aplicacao.Servicos
 {
+    /// <summary>
+    /// Serviço para orquestrar as chamadas de WebSockets e gestão da sala de bate papo.
+    /// </summary>
     public class MotorDeEnvioDeMensagem
     {        
         private readonly IBatePapo _batePapo;
@@ -17,6 +20,10 @@ namespace Take.BatePapo.Aplicacao.Servicos
         {
             _batePapo = batePapo;
         }
+
+        /// <summary>
+        /// Mantem o processamento de requisições do socket até ser o fechamento da conexão do socket ser relizada
+        /// </summary>
         public async Task ProcessarWebSocket(HttpContext context)
         {
             CancellationToken ct = context.RequestAborted;
