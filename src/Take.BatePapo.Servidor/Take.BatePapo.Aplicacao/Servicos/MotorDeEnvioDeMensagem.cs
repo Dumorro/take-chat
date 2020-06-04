@@ -24,6 +24,7 @@ namespace Take.BatePapo.Aplicacao.Servicos
         /// <summary>
         /// Mantem o processamento de requisições do socket até ser o fechamento da conexão do socket ser relizada
         /// </summary>
+        // Uma refatoração do loop de processamento para handlers tornaria mais elegante a solução.
         public async Task ProcessarWebSocket(HttpContext context)
         {
             CancellationToken ct = context.RequestAborted;
