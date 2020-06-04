@@ -1,6 +1,4 @@
-﻿using FluentValidation.Internal;
-using System;
-using Take.BatePapo.Dominio.Enumeracoes;
+﻿using Take.BatePapo.Dominio.Enumeracoes;
 
 namespace Take.BatePapo.Dominio.Dtos
 {
@@ -16,7 +14,7 @@ namespace Take.BatePapo.Dominio.Dtos
         {
             _salaDoBatePapo = salaDoBatePapo;
             ApelidoDoParticipante = apelidoDoParticipante;
-            Destinatario = destinatario;
+            Destinatario = string.IsNullOrWhiteSpace(destinatario) ? "todos" : destinatario;
             _textoDaMensagem = textoDaMensagem;
             TipoDaMensagem = tipoDaMensagem;
         }
