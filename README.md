@@ -25,3 +25,5 @@ em: ~\src\Take.BatePapo.Servidor\Take.BatePapo.TestesDeUnidade
 ### Iniciar aplicação
 em: ~\src\Take.BatePapo.Servidor\Take.BatePapo.WebApp
 **dotnet run**
+
+Acessar a aplicação em *http://localhost:36454*
