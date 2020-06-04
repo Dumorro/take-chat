@@ -1,0 +1,11 @@
+﻿@{
+}
+@Html.ValidationSummary()
+<form action="@Url.Action("Index")" method="post">
+    <input type="text" placeholder="Informe o apelido" name="apelido" />
+    <input type="submit" value="Entrar" />
+</form>
+@if (ViewData["UsuarioExistente"]!=null && (bool)ViewData["UsuarioExistente"])
+{
+<span>Apelido já utilizado na sala, escolha outro.</span>
+}

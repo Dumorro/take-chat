@@ -10,9 +10,8 @@
     /// 
     public enum ETipoDaMensagem
     {
-        Todos = 1,
+        Aberta = 1,
         Privada = 2,
-        Aberta = 3,
         Comando = 4
     }
 }

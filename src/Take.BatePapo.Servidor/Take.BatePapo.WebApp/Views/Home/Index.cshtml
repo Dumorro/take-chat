@@ -1,8 +1,75 @@
-﻿@{
+﻿@model string
+@{
     ViewData["Title"] = "Home Page";
 }
+<style>
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    .msg {
+        position: absolute;
+        top: 0;
+        bottom: 30px;
+        border: 1px solid green;
+        margin-bottom: auto;
+        display: block;
+        overflow: scroll;
+        width: 100%;
+        white-space: nowrap;
+    }
+</style>
+<div class="msg">
+    <div style="position:absolute; bottom:0;" id="msgs"></div>
 </div>
+
+<div style="position:absolute;height:20px;bottom:10px;left:0; display:block;width:100%">
+    <input type="text" style="max-width:unset;width:100%;max-width:100%" id="idMenagem" placeholder="Digete a mensagem com os comandos e pressione enter" />
+</div>
+
+@section Scripts {
+    <script>
+    $(function () {
+        var usuario = '@Model';
+
+        var protocol = location.protocol === "https:" ? "wss:" : "ws:";
+        var wsUri = protocol + "//" + window.location.host + "/wsBatePapo";
+        var socket = new WebSocket(wsUri);
+        socket.onopen = e => {
+            console.log("socket opened", e);
+            socket.send(usuario + ": /e /t entrou na sala");
+        };
+
+        socket.onclose = function (e) {
+            console.log("socket closed", e);
+        };
+
+        socket.onmessage = function (e) {
+            console.log(e);
+            $('#msgs').append(e.data + '<br />');
+        };
+
+        socket.onerror = function (e) {
+            console.error(e.data);
+        };
+
+        $('#idMenagem').keypress(function (e) {
+            if (e.which != 13) {
+                return;
+            }
+            e.preventDefault();
+            var mensagemDigitada = $('#idMenagem').val();
+            if (mensagemDigitada.indexOf('/s') !== -1) {
+                socket.send(usuario + ": /s /t saiu da sala");
+                socket.close();
+                history.back();
+                return;
+            }
+            var message = usuario + ": " + mensagemDigitada;
+            socket.send(message);
+            $('#idMenagem').val('');
+        });
+    });
+    </script>
+}

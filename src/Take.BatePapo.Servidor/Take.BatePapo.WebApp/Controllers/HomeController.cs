@@ -1,37 +1,40 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using Take.BatePapo.WebApp.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Take.BatePapo.Aplicacao.Servicos;
 
 namespace Take.BatePapo.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IConsultaDeUsuariosDaSalaDeBatePapo _consultaDeUsuariosDaSala;
+        public HomeController(IConsultaDeUsuariosDaSalaDeBatePapo consultaDeUsuariosDaSala)
         {
-            _logger = logger;
+            _consultaDeUsuariosDaSala = consultaDeUsuariosDaSala;
         }
-
+        [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return View("InicioUsuario");
         }
 
-        public IActionResult Privacy()
+        [HttpPost]
+        public IActionResult Index(string apelido)
         {
-            return View();
+            ViewData["UsuarioExistente"] = false;
+            var usuarioExistente = _consultaDeUsuariosDaSala.VerificarUsuarioExistente(apelido);
+            if (usuarioExistente)
+            {
+                ViewData["UsuarioExistente"] = usuarioExistente;
+                return View("InicioUsuario");
+            }
+            else
+            {
+                return View("Index", apelido);
+            }
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View();
         }
     }
 }
