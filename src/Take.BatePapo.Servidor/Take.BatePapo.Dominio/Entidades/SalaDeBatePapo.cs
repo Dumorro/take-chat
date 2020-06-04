@@ -46,6 +46,7 @@ namespace Take.BatePapo.Dominio.Entidades
         {
             return _participantes.Select(p => p.Key).ToList();
         }
+
         public bool VerificarApelidoExistente(string apelido)
         {
             return _apelidos.Where(a => a.Value == apelido).Count() > 0;
