@@ -1,6 +1,6 @@
 # take-chat
 
-### Comandos de bate papo: 
+### Comandos para utilização da sala de bate papo: 
 - **/t** + texto para enviar uma mensagem
 - **/d** + apelido para enviar uma mensagem direta pública.
 - **/r** + apelido para enviar uma mensagem direta privada.
