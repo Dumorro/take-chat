@@ -10,12 +10,11 @@ namespace Take.BatePapo.TestesDeUnidade.Dominio
         public void DeveMontarUmaMensagemParaEnvioAberto()
         {
             const string mensagemEsperada = "João fala para Maria: Olá";
-            const string nomeDaSala = "Sala1";
             const string apelido = "João";
             const string destinatario = "Maria";
             const string textoDaMensagem = "Olá";
-            const ETipoDaMensagem tipoDaMensagem = ETipoDaMensagem.Aberta;
-            var mensagem = new Mensagem(nomeDaSala, apelido, destinatario, textoDaMensagem, tipoDaMensagem);
+            const ETipoVisibilidadeDaMensagem tipoDaMensagem = ETipoVisibilidadeDaMensagem.Aberta;
+            var mensagem = new Mensagem(apelido, destinatario, textoDaMensagem, tipoDaMensagem);
 
             var mensagemObtida = mensagem.Montar();
 
@@ -28,11 +27,10 @@ namespace Take.BatePapo.TestesDeUnidade.Dominio
         public void DeveMontarUmaMensagemComDestinatarioNuloOuVazio(string destinatario)
         {
             const string mensagemEsperada = "João fala para todos: Olá";
-            const string nomeDaSala = "Sala1";
             const string apelido = "João";
             const string textoDaMensagem = "Olá";
-            const ETipoDaMensagem tipoDaMensagem = ETipoDaMensagem.Aberta;
-            var mensagem = new Mensagem(nomeDaSala, apelido, destinatario, textoDaMensagem, tipoDaMensagem);
+            const ETipoVisibilidadeDaMensagem tipoDaMensagem = ETipoVisibilidadeDaMensagem.Aberta;
+            var mensagem = new Mensagem(apelido, destinatario, textoDaMensagem, tipoDaMensagem);
 
             var mensagemObtida = mensagem.Montar();
 

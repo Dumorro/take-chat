@@ -4,8 +4,8 @@ using Take.BatePapo.Dominio.Enumeracoes;
 
 namespace Take.BatePapo.Dominio.Entidades
 {
-    public class CriacaoDeMensagemDeAviso
-    {
+    public class CriacaoDeMensagemDoBatePapo
+    {        
         public static Mensagem Montar(string mensagem)
         {
             if (string.IsNullOrWhiteSpace(mensagem))
@@ -18,14 +18,18 @@ namespace Take.BatePapo.Dominio.Entidades
             var tipoMensagem = ObterTipoMensagem(parametros);
             var textoDaMensagem = ObterTexto(parametros);
 
-            return new Mensagem(null, apelidoDoParticipante, destinatario, textoDaMensagem, tipoMensagem);
+            return new Mensagem(apelidoDoParticipante, destinatario, textoDaMensagem, tipoMensagem);
         }
 
-        private static ETipoDaMensagem ObterTipoMensagem(string[] parametros)
+        private static ETipoVisibilidadeDaMensagem ObterTipoMensagem(string[] parametros)
         {
-            if (parametros.FirstOrDefault(p => p.StartsWith("e")) != null)
-                return ETipoDaMensagem.Comando;
-            return parametros.FirstOrDefault(p => p.StartsWith("r")) != null ? ETipoDaMensagem.Privada : ETipoDaMensagem.Aberta;
+            var comandoEntradaNaSala = ((char)ETipoComando.EntrarNaSala).ToString();
+            var comandoSaidaSala = ((char)ETipoComando.SairDaSala).ToString();
+            var comandoMensagemReservada = ((char)ETipoComando.MensagemReservada).ToString();
+            if (parametros.FirstOrDefault(p => p.StartsWith(comandoEntradaNaSala) || p.StartsWith(comandoSaidaSala)) != null)
+                return ETipoVisibilidadeDaMensagem.Comando;
+            return parametros.FirstOrDefault(p => p.StartsWith(comandoMensagemReservada)) 
+                != null ? ETipoVisibilidadeDaMensagem.Privada : ETipoVisibilidadeDaMensagem.Aberta;
         }
 
         private static string ObterTexto(string[] parametros)
