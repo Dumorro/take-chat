@@ -8,7 +8,7 @@ using Xunit;
 
 namespace Take.BatePapo.TestesDeUnidade.Dominio
 {
-    public class CriacaoDeMensagemDeAvisoTestes
+    public class CriacaoDeMensagemDoBatePapoTestes
     {
         [Theory]
         [ClassData(typeof(CriacaoDeMensagemDeAvisoParametrosParaTestes))]
