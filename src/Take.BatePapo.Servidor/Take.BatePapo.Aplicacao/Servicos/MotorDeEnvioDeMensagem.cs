@@ -37,7 +37,7 @@ namespace Take.BatePapo.Aplicacao.Servicos
             while (true)
             {
                 var response = await ProcessarMensagem(socketParticipante, ct);
-                var mensagem = CriacaoDeMensagemDeAviso.Montar(response);
+                var mensagem = CriacaoDeMensagemDoBatePapo.Montar(response);
                 if (string.IsNullOrEmpty(response) || mensagem == null || string.IsNullOrWhiteSpace(mensagem.Montar()))
                 {
                     if (socketParticipante.State != WebSocketState.Open)
@@ -48,7 +48,7 @@ namespace Take.BatePapo.Aplicacao.Servicos
                 {
                     _batePapo.DefinirApelidoDoParticipante(mensagem.ApelidoDoParticipante, socketParticipante);
                 }
-                foreach (var socketDestinatario in _batePapo.ListarUsuarioParaEnvioMensagem(idParticipante, mensagem))
+                foreach (var socketDestinatario in _batePapo.ListarSocketsParaEnvioMensagem(idParticipante, mensagem))
                 {
                     if (socketDestinatario.State != WebSocketState.Open)
                         continue;
@@ -60,7 +60,6 @@ namespace Take.BatePapo.Aplicacao.Servicos
 
         private async Task RemoverParticipante(WebSocket socketParticipante, Guid idParticipante, CancellationToken ct)
         {
-            var apelido = _batePapo.BuscarApelidoDoParticipante(idParticipante);
             _batePapo.RemoverParticipante(idParticipante);
             await socketParticipante.CloseAsync(WebSocketCloseStatus.NormalClosure, "Closing", ct);
             socketParticipante.Dispose();

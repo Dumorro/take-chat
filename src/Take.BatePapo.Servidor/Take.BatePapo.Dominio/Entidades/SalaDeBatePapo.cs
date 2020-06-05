@@ -32,11 +32,6 @@ namespace Take.BatePapo.Dominio.Entidades
             return _apelidos.FirstOrDefault(p => p.Value == apelido).Key;
         }
 
-        public string BuscarApelidoDoParticipante(Guid idUsuario)
-        {
-            return _apelidos[idUsuario];
-        }
-
         public WebSocket BuscarWebSocketDoParticipante(Guid idUsuario)
         {
             return _participantes[idUsuario];
@@ -69,9 +64,9 @@ namespace Take.BatePapo.Dominio.Entidades
             _participantes.TryRemove(idUsuario, out socket);
         }
 
-        public List<WebSocket> ListarUsuarioParaEnvioMensagem(Guid idUsuario, Mensagem mensagem)
-        {//TODO: TESTES
-            if (mensagem != null && mensagem.TipoDaMensagem == ETipoDaMensagem.Privada)
+        public List<WebSocket> ListarSocketsParaEnvioMensagem(Guid idUsuario, Mensagem mensagem)
+        {
+            if (mensagem != null && mensagem.TipoVisibilidadeDaMensagem == ETipoVisibilidadeDaMensagem.Privada)
             {
                 var idDestinatario = BuscarIdDoParticipante(mensagem.Destinatario);
                 if (idDestinatario == new Guid())
@@ -84,6 +79,5 @@ namespace Take.BatePapo.Dominio.Entidades
 
             return _participantes.Select(p => p.Value).ToList();
         }
-
     }
 }
